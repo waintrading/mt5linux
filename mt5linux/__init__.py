@@ -2031,7 +2031,7 @@ Display dataframe with data
 
 
         '''
-        code=f'mt5.copy_rates_from("{symbol}", {timeframe}, {repr(date_from.astimezone())}, {count})'
+        code=f'mt5.copy_rates_from("{symbol}", {timeframe}, {date_from}, {count})'
         return rpyc.classic.obtain(self.__conn.eval(code))
 
     def copy_rates_from_pos(self,symbol,timeframe,start_pos,count):
@@ -2288,7 +2288,7 @@ Display dataframe with data
 
 
         '''
-        code=f'mt5.copy_rates_range("{symbol}", {timeframe}, {repr(date_from.astimezone())}, {repr(date_to.astimezone())})'
+        code=f'mt5.copy_rates_range("{symbol}", {timeframe}, {date_from}, {date_to})'
         return rpyc.utils.classic.obtain(self.__conn.eval(code))
 
     def copy_ticks_from(self,symbol, date_from, count, flags):
@@ -2443,7 +2443,7 @@ Display dataframe with ticks
 
 
         '''
-        code=f'mt5.copy_ticks_from("{symbol}", {repr(date_from.astimezone())}, {count}, {flags})'
+        code=f'mt5.copy_ticks_from("{symbol}", {date_from}, {count}, {flags})'
         return rpyc.utils.classic.obtain(self.__conn.eval(code))
 
     def copy_ticks_range(self,symbol, date_from, date_to, flags):
@@ -2578,7 +2578,7 @@ Display dataframe with ticks
 
     `CopyRates`, `copy_rates_from_pos`, `copy_rates_range`, `copy_ticks_from`, `copy_ticks_range`
         '''
-        code=f'mt5.copy_ticks_range("{symbol}", {repr(date_from.astimezone())}, {repr(date_to.astimezone())}, {flags})'
+        code=f'mt5.copy_ticks_range("{symbol}", {date_from}, {date_to} {flags})'
         return rpyc.utils.classic.obtain(self.__conn.eval(code))
 
     def orders_total(self,*args,**kwargs):
@@ -3621,7 +3621,7 @@ mt5.shutdown()
 
     `history_orders_get`, `history_deals_total`
         '''
-        code=f'mt5.history_orders_total({repr(date_from.astimezone())}, {repr(date_to.astimezone())})'
+        code=f'mt5.history_orders_total({date_from}, {date_to})'
         return self.__conn.eval(code)
 
     def history_orders_get(self,*args,**kwargs):
@@ -3828,7 +3828,7 @@ mt5.shutdown()
 
 
         '''
-        code=f'mt5.history_deals_total({repr(date_from.astimezone())}, {repr(date_to.astimezone())})'
+        code=f'mt5.history_deals_total({date_from}, {date_to})'
         return self.__conn.eval(code)
 
     def history_deals_get(self,*args,**kwargs):
